@@ -97,8 +97,10 @@ void printOutlets(std::vector<CellMarker<unsigned char>>& outlets)
 
 void executeMeasurement(std::string directionFilename, std::string outletsFilename, int algorithmIndex, int algorithmParameter, std::string resultsFilename)
 {
+  RasterInfo rasterInfo;
+
   std::cout << "loading flow direction file (" << directionFilename << ")..." << std::endl;
-  FlowDirectionMatrix directionMatrix = FlowDirectionLoader::loadGdal(directionFilename);
+  FlowDirectionMatrix directionMatrix = FlowDirectionLoader::loadGdal(directionFilename, rasterInfo);
   std::cout << "flow direction data: " << directionMatrix.height << " rows, " << directionMatrix.width << " columns" << std::endl;
 
   std::cout << "loading outlets file (" << outletsFilename << ")..." << std::endl;
@@ -121,7 +123,7 @@ void executeMeasurement(std::string directionFilename, std::string outletsFilena
   if (!resultsFilename.empty())
   {
     std::cout << "saving results (" << resultsFilename << ")..." << std::endl;
-    BasinIndexLoader::saveGdal(resultsFilename, basinMatrix);
+    BasinIndexLoader::saveGdal(resultsFilename, basinMatrix, rasterInfo);
   }
 }
 

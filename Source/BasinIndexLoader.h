@@ -9,8 +9,8 @@
 class BasinIndexLoader
 {
   public:
-    static BasinIndexMatrix loadGdal(std::string filename, int bandIndex = 1);
-    static void saveGdal(std::string filename, const BasinIndexMatrix& basinIndexMatrix);
+    static BasinIndexMatrix loadGdal(std::string filename, RasterInfo& rasterInfo, int bandIndex = 1);
+    static void saveGdal(std::string filename, const BasinIndexMatrix& basinIndexMatrix, RasterInfo& rasterInfo, int bandIndex = 1);
 };
 
 
