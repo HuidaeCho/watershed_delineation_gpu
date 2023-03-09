@@ -1,0 +1,17 @@
+CXX=nvcc
+CXXFLAGS=-O3 -Xcompiler -openmp
+LDFLAGS=-O3 -Xcompiler -openmp
+
+all: wdg.exe
+
+clean:
+	$(RM) *.obj
+
+wdg.exe: main.obj BasinIndexLoader.obj BasinIndexMatrix.obj FlowDirectionLoader.obj FlowDirectionMatrix.obj FlowDirectionReverser.obj IWatershedDelineationAlgorithm.obj LabelPullingGpuAlgorithm.obj PathReductionBackBufferGpuAlgorithm.obj PathReductionGpuAlgorithm.obj PathTracingGpuAlgorithm.obj RecursiveSequentialAlgorithm.obj WatershedDelineationUtilities.obj
+	$(CXX) $(LDFLAGS) -o $@ $^ /c/OSGeo4W/lib/gdal_i.lib
+
+%.obj: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -I/c/OSGeo4W/include
+
+%.obj: %.cu
+	$(CXX) $(CXXFLAGS) -c $< -I/c/OSGeo4W/include
