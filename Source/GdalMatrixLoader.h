@@ -2,7 +2,7 @@
 #define GDAL_MATRIX_LOADER_H
 
 
-#include "Rasterinfo.h"
+#include "RasterInfo.h"
 #include <gdal_priv.h>
 #include <cpl_conv.h>
 
